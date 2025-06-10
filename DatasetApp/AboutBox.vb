@@ -14,7 +14,7 @@
         '    properties dialog (under the "Project" menu).
         Me.LabelProductName.Text = My.Application.Info.ProductName
         Me.LabelVersion.Text = String.Format("Version {0}", My.Application.Info.Version.ToString)
-        Me.LabelCopyright.Text = My.Application.Info.Copyright & " HCC Programmeren"
+        Me.LabelCopyright.Text = My.Application.Info.Copyright & " Tronica Software"
         Me.LabelCompanyName.Text = My.Application.Info.CompanyName
         'Me.TextBoxDescription.Text = My.Application.Info.Description
         TextBoxDescription.Text = "Met dit programma experimenteren we met de DataSet" & vbNewLine &
