@@ -20,4 +20,24 @@
         dc.DataType = System.Type.GetType(myType)
         myTable.Columns.Add(dc)
     End Sub
+    Sub AddRow(ByRef myTable As DataTable, numID As Long, ParamArray velden() As String)
+        Dim myRow As DataRow
+        Dim veldstrings() As String =
+            {
+                "Voornaam",
+                "Tussenvoegsels",
+                "Achternaam",
+                "Adres",
+                "Postcode",
+                "Woonplaats",
+                "Telefoon",
+                "Email"
+            }
+        myRow = myTable.NewRow()
+        myRow("ID") = numID
+        For i = 0 To veldstrings.Length - 1
+            myRow(veldstrings(i)) = velden(i)
+        Next
+        myTable.Rows.Add(myRow)
+    End Sub
 End Module

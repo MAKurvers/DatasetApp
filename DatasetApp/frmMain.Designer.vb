@@ -24,7 +24,7 @@ Partial Class frmMain
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMain))
         Me.dgData = New System.Windows.Forms.DataGridView()
-        Me.btnTest = New System.Windows.Forms.Button()
+        Me.btnOpslaan = New System.Windows.Forms.Button()
         Me.btnInfo = New System.Windows.Forms.Button()
         Me.gbData = New System.Windows.Forms.GroupBox()
         Me.tsNAW = New System.Windows.Forms.ToolStrip()
@@ -42,7 +42,29 @@ Partial Class frmMain
         Me.tsbtnEdit = New System.Windows.Forms.ToolStripButton()
         Me.tsbtnRemove = New System.Windows.Forms.ToolStripButton()
         Me.btnVeldenLegen = New System.Windows.Forms.Button()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.txtVoornaam = New System.Windows.Forms.TextBox()
+        Me.txtTVS = New System.Windows.Forms.TextBox()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.txtAchternaam = New System.Windows.Forms.TextBox()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.txtAdres = New System.Windows.Forms.TextBox()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.txtPostcode = New System.Windows.Forms.TextBox()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.txtWPlaats = New System.Windows.Forms.TextBox()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.txtTel = New System.Windows.Forms.TextBox()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.txtEmail = New System.Windows.Forms.TextBox()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.txtID = New System.Windows.Forms.TextBox()
+        Me.btnOpenen = New System.Windows.Forms.Button()
+        Me.OpenFile = New System.Windows.Forms.OpenFileDialog()
+        Me.SaveFile = New System.Windows.Forms.SaveFileDialog()
         CType(Me.dgData, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.gbData.SuspendLayout()
         Me.tsNAW.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -50,26 +72,28 @@ Partial Class frmMain
         '
         Me.dgData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgData.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.dgData.Location = New System.Drawing.Point(0, 274)
+        Me.dgData.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter
+        Me.dgData.Location = New System.Drawing.Point(0, 338)
         Me.dgData.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.dgData.MultiSelect = False
         Me.dgData.Name = "dgData"
-        Me.dgData.Size = New System.Drawing.Size(1061, 291)
+        Me.dgData.ShowEditingIcon = False
+        Me.dgData.Size = New System.Drawing.Size(1280, 291)
         Me.dgData.TabIndex = 0
         '
-        'btnTest
+        'btnOpslaan
         '
-        Me.btnTest.Location = New System.Drawing.Point(912, 162)
-        Me.btnTest.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.btnTest.Name = "btnTest"
-        Me.btnTest.Size = New System.Drawing.Size(112, 35)
-        Me.btnTest.TabIndex = 1
-        Me.btnTest.Text = "Test"
-        Me.btnTest.UseVisualStyleBackColor = True
+        Me.btnOpslaan.Location = New System.Drawing.Point(1155, 159)
+        Me.btnOpslaan.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.btnOpslaan.Name = "btnOpslaan"
+        Me.btnOpslaan.Size = New System.Drawing.Size(112, 35)
+        Me.btnOpslaan.TabIndex = 1
+        Me.btnOpslaan.Text = "Opslaan"
+        Me.btnOpslaan.UseVisualStyleBackColor = True
         '
         'btnInfo
         '
-        Me.btnInfo.Location = New System.Drawing.Point(936, 28)
+        Me.btnInfo.Location = New System.Drawing.Point(1155, 28)
         Me.btnInfo.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnInfo.Name = "btnInfo"
         Me.btnInfo.Size = New System.Drawing.Size(112, 35)
@@ -79,9 +103,27 @@ Partial Class frmMain
         '
         'gbData
         '
+        Me.gbData.Controls.Add(Me.txtID)
+        Me.gbData.Controls.Add(Me.Label9)
+        Me.gbData.Controls.Add(Me.txtEmail)
+        Me.gbData.Controls.Add(Me.Label8)
+        Me.gbData.Controls.Add(Me.txtTel)
+        Me.gbData.Controls.Add(Me.Label7)
+        Me.gbData.Controls.Add(Me.txtWPlaats)
+        Me.gbData.Controls.Add(Me.Label6)
+        Me.gbData.Controls.Add(Me.txtPostcode)
+        Me.gbData.Controls.Add(Me.Label5)
+        Me.gbData.Controls.Add(Me.txtAdres)
+        Me.gbData.Controls.Add(Me.Label4)
+        Me.gbData.Controls.Add(Me.Label3)
+        Me.gbData.Controls.Add(Me.txtAchternaam)
+        Me.gbData.Controls.Add(Me.Label2)
+        Me.gbData.Controls.Add(Me.txtTVS)
+        Me.gbData.Controls.Add(Me.txtVoornaam)
+        Me.gbData.Controls.Add(Me.Label1)
         Me.gbData.Location = New System.Drawing.Point(13, 28)
         Me.gbData.Name = "gbData"
-        Me.gbData.Size = New System.Drawing.Size(844, 238)
+        Me.gbData.Size = New System.Drawing.Size(1080, 302)
         Me.gbData.TabIndex = 3
         Me.gbData.TabStop = False
         Me.gbData.Text = "Gegevens"
@@ -91,7 +133,7 @@ Partial Class frmMain
         Me.tsNAW.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsbtnFirst, Me.tsbtnPrev, Me.ToolStripSeparator1, Me.tstxtRow, Me.ToolStripSeparator2, Me.tslblCount, Me.ToolStripSeparator3, Me.tsbtnNext, Me.tsbtnLast, Me.ToolStripSeparator4, Me.tsbtnAdd, Me.tsbtnEdit, Me.tsbtnRemove})
         Me.tsNAW.Location = New System.Drawing.Point(0, 0)
         Me.tsNAW.Name = "tsNAW"
-        Me.tsNAW.Size = New System.Drawing.Size(1061, 25)
+        Me.tsNAW.Size = New System.Drawing.Size(1280, 25)
         Me.tsNAW.TabIndex = 4
         Me.tsNAW.Text = "ToolStrip1"
         '
@@ -194,7 +236,7 @@ Partial Class frmMain
         '
         'btnVeldenLegen
         '
-        Me.btnVeldenLegen.Location = New System.Drawing.Point(888, 229)
+        Me.btnVeldenLegen.Location = New System.Drawing.Point(1107, 264)
         Me.btnVeldenLegen.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnVeldenLegen.Name = "btnVeldenLegen"
         Me.btnVeldenLegen.Size = New System.Drawing.Size(160, 35)
@@ -202,22 +244,189 @@ Partial Class frmMain
         Me.btnVeldenLegen.Text = "Velden leegmaken"
         Me.btnVeldenLegen.UseVisualStyleBackColor = True
         '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(19, 74)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(83, 20)
+        Me.Label1.TabIndex = 0
+        Me.Label1.Text = "Voornaam"
+        '
+        'txtVoornaam
+        '
+        Me.txtVoornaam.Location = New System.Drawing.Point(122, 71)
+        Me.txtVoornaam.Name = "txtVoornaam"
+        Me.txtVoornaam.Size = New System.Drawing.Size(229, 26)
+        Me.txtVoornaam.TabIndex = 1
+        '
+        'txtTVS
+        '
+        Me.txtTVS.Location = New System.Drawing.Point(509, 71)
+        Me.txtTVS.Name = "txtTVS"
+        Me.txtTVS.Size = New System.Drawing.Size(98, 26)
+        Me.txtTVS.TabIndex = 2
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(380, 74)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(123, 20)
+        Me.Label2.TabIndex = 3
+        Me.Label2.Text = "Tussenvoegsels"
+        '
+        'txtAchternaam
+        '
+        Me.txtAchternaam.Location = New System.Drawing.Point(756, 71)
+        Me.txtAchternaam.Name = "txtAchternaam"
+        Me.txtAchternaam.Size = New System.Drawing.Size(229, 26)
+        Me.txtAchternaam.TabIndex = 4
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(642, 74)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(96, 20)
+        Me.Label3.TabIndex = 5
+        Me.Label3.Text = "Achternaam"
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(19, 111)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(51, 20)
+        Me.Label4.TabIndex = 6
+        Me.Label4.Text = "Adres"
+        '
+        'txtAdres
+        '
+        Me.txtAdres.Location = New System.Drawing.Point(122, 108)
+        Me.txtAdres.Name = "txtAdres"
+        Me.txtAdres.Size = New System.Drawing.Size(229, 26)
+        Me.txtAdres.TabIndex = 7
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(19, 149)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(76, 20)
+        Me.Label5.TabIndex = 8
+        Me.Label5.Text = "Postcode"
+        '
+        'txtPostcode
+        '
+        Me.txtPostcode.Location = New System.Drawing.Point(122, 146)
+        Me.txtPostcode.Name = "txtPostcode"
+        Me.txtPostcode.Size = New System.Drawing.Size(117, 26)
+        Me.txtPostcode.TabIndex = 9
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(19, 185)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(94, 20)
+        Me.Label6.TabIndex = 10
+        Me.Label6.Text = "Woonplaats"
+        '
+        'txtWPlaats
+        '
+        Me.txtWPlaats.Location = New System.Drawing.Point(122, 182)
+        Me.txtWPlaats.Name = "txtWPlaats"
+        Me.txtWPlaats.Size = New System.Drawing.Size(229, 26)
+        Me.txtWPlaats.TabIndex = 11
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(19, 223)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(71, 20)
+        Me.Label7.TabIndex = 12
+        Me.Label7.Text = "Telefoon"
+        '
+        'txtTel
+        '
+        Me.txtTel.Location = New System.Drawing.Point(122, 220)
+        Me.txtTel.Name = "txtTel"
+        Me.txtTel.Size = New System.Drawing.Size(229, 26)
+        Me.txtTel.TabIndex = 13
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(19, 261)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(48, 20)
+        Me.Label8.TabIndex = 14
+        Me.Label8.Text = "Email"
+        '
+        'txtEmail
+        '
+        Me.txtEmail.Location = New System.Drawing.Point(122, 258)
+        Me.txtEmail.Name = "txtEmail"
+        Me.txtEmail.Size = New System.Drawing.Size(485, 26)
+        Me.txtEmail.TabIndex = 15
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(19, 36)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(26, 20)
+        Me.Label9.TabIndex = 16
+        Me.Label9.Text = "ID"
+        '
+        'txtID
+        '
+        Me.txtID.Location = New System.Drawing.Point(122, 33)
+        Me.txtID.Name = "txtID"
+        Me.txtID.ReadOnly = True
+        Me.txtID.Size = New System.Drawing.Size(98, 26)
+        Me.txtID.TabIndex = 17
+        '
+        'btnOpenen
+        '
+        Me.btnOpenen.Location = New System.Drawing.Point(1155, 102)
+        Me.btnOpenen.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.btnOpenen.Name = "btnOpenen"
+        Me.btnOpenen.Size = New System.Drawing.Size(112, 35)
+        Me.btnOpenen.TabIndex = 6
+        Me.btnOpenen.Text = "Openen"
+        Me.btnOpenen.UseVisualStyleBackColor = True
+        '
+        'OpenFile
+        '
+        Me.OpenFile.FileName = "OpenFileDialog1"
+        Me.OpenFile.InitialDirectory = "D:\Documenten\Projecten\Visual Basic\Dataset bestanden"
+        '
+        'SaveFile
+        '
+        Me.SaveFile.InitialDirectory = "D:\Documenten\Projecten\Visual Basic\Dataset bestanden"
+        '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1061, 565)
+        Me.ClientSize = New System.Drawing.Size(1280, 629)
+        Me.Controls.Add(Me.btnOpenen)
         Me.Controls.Add(Me.btnVeldenLegen)
         Me.Controls.Add(Me.tsNAW)
         Me.Controls.Add(Me.gbData)
         Me.Controls.Add(Me.btnInfo)
-        Me.Controls.Add(Me.btnTest)
+        Me.Controls.Add(Me.btnOpslaan)
         Me.Controls.Add(Me.dgData)
         Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Name = "frmMain"
         Me.Text = "Form1"
         CType(Me.dgData, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.gbData.ResumeLayout(False)
+        Me.gbData.PerformLayout()
         Me.tsNAW.ResumeLayout(False)
         Me.tsNAW.PerformLayout()
         Me.ResumeLayout(False)
@@ -226,7 +435,7 @@ Partial Class frmMain
     End Sub
 
     Friend WithEvents dgData As DataGridView
-    Friend WithEvents btnTest As Button
+    Friend WithEvents btnOpslaan As Button
     Friend WithEvents btnInfo As Button
     Friend WithEvents gbData As GroupBox
     Friend WithEvents tsNAW As ToolStrip
@@ -244,4 +453,25 @@ Partial Class frmMain
     Friend WithEvents tsbtnEdit As ToolStripButton
     Friend WithEvents tsbtnRemove As ToolStripButton
     Friend WithEvents btnVeldenLegen As Button
+    Friend WithEvents Label3 As Label
+    Friend WithEvents txtAchternaam As TextBox
+    Friend WithEvents Label2 As Label
+    Friend WithEvents txtTVS As TextBox
+    Friend WithEvents txtVoornaam As TextBox
+    Friend WithEvents Label1 As Label
+    Friend WithEvents txtWPlaats As TextBox
+    Friend WithEvents Label6 As Label
+    Friend WithEvents txtPostcode As TextBox
+    Friend WithEvents Label5 As Label
+    Friend WithEvents txtAdres As TextBox
+    Friend WithEvents Label4 As Label
+    Friend WithEvents txtEmail As TextBox
+    Friend WithEvents Label8 As Label
+    Friend WithEvents txtTel As TextBox
+    Friend WithEvents Label7 As Label
+    Friend WithEvents txtID As TextBox
+    Friend WithEvents Label9 As Label
+    Friend WithEvents btnOpenen As Button
+    Friend WithEvents OpenFile As OpenFileDialog
+    Friend WithEvents SaveFile As SaveFileDialog
 End Class
