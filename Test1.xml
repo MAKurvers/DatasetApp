@@ -1,0 +1,25 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <NAW>
+    <ID>1</ID>
+    <Voornaam>Hallo</Voornaam>
+    <Tussenvoegsels>jh</Tussenvoegsels>
+    <Achternaam>allemaal</Achternaam>
+    <Adres>jkhkjikjkjjkjkj</Adres>
+    <Postcode>5432 gh</Postcode>
+    <Woonplaats />
+    <Telefoon />
+    <Email />
+  </NAW>
+  <NAW>
+    <ID>2</ID>
+    <Voornaam>Klaas</Voornaam>
+    <Tussenvoegsels>van</Tussenvoegsels>
+    <Achternaam>Houten</Achternaam>
+    <Adres>Loeraarstraat 4</Adres>
+    <Postcode>1234 RT</Postcode>
+    <Woonplaats />
+    <Telefoon />
+    <Email />
+  </NAW>
+</NewDataSet>
