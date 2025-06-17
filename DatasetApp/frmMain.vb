@@ -173,10 +173,12 @@
 
     Private Sub btnOpenen_Click(sender As Object, e As EventArgs) Handles btnOpenen.Click
         If OpenFile.ShowDialog() = DialogResult.OK Then
+            modMain.ds.Clear()
             modMain.ds.ReadXml(OpenFile.FileName)
             curRow = 0
             'ID = dtNAW.Rows(dtNAW.Rows.Count - 1).Field(Of Long)("ID")
             'ID = dtNAW.Rows(tslblCount.Text)
+            'dgData.Rows.Clear()
             RefreshData()
             ID = dtNAW.Rows(Val(tslblCount.Text) - 1).Item("ID")
             ToonGegevens(0)

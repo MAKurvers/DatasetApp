@@ -1,6 +1,6 @@
 ﻿Module modMain
     Public ds As DataSet
-    Const DUUR = 2000
+    Const DUUR = 4000
     Sub Main()
         Dim splash As New SplashInfo
 
