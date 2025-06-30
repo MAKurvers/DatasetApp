@@ -6,6 +6,8 @@
     Private curRow As Long  'Rij die geselecteerd is
     Private dtNAW As DataTable
     Private filename As String
+    Private isGewijzigd As Boolean
+    'My.Computer.FileSystem.SpecialDirectories.Temp
 
     Private Sub btnTest_Click(sender As Object, e As EventArgs)
 
@@ -60,8 +62,8 @@
         ds.Tables.Add(dtNAW)
         ID = 0
         curRow = -1
-
-        EnableNav(True)
+        'isGewijzigd = False
+        'EnableNav(True)
     End Sub
 
     Private Sub btnInfo_Click(sender As Object, e As EventArgs) Handles btnInfo.Click
@@ -101,7 +103,6 @@
         tsbtnLast.Enabled = enabled
         tstxtRow.Enabled = enabled
         tslblCount.Enabled = enabled
-        tsbtnAdd.Enabled = enabled
         tsbtnEdit.Enabled = enabled
         tsbtnRemove.Enabled = enabled
     End Sub
@@ -125,6 +126,17 @@
         txtWPlaats.Text = myRow("Woonplaats")
         txtTel.Text = myRow("Telefoon")
         txtEmail.Text = myRow("Email")
+    End Sub
+    Sub VeldenLegen(metID As Boolean)
+        If metID Then txtID.Clear()
+        txtVoornaam.Clear()
+        txtTVS.Clear()
+        txtAchternaam.Clear()
+        txtAdres.Clear()
+        txtPostcode.Clear()
+        txtWPlaats.Clear()
+        txtTel.Clear()
+        txtEmail.Clear()
     End Sub
     Private Sub Label8_Click(sender As Object, e As EventArgs) Handles Label8.Click
 
@@ -151,9 +163,43 @@
         txtID.Text = ID.ToString
         modMain.AddRow(dtNAW, ID, gegevens)
         RefreshData()
+        modMain.ds.WriteXml(filename)
+        EnableNav(True)
     End Sub
 
-    Private Sub dgData_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgData.CellClick
+    Private Sub btnOpslaan_Click(sender As Object, e As EventArgs) Handles btnOpslaan.Click
+        SaveFile.InitialDirectory = My.Computer.FileSystem.SpecialDirectories.MyDocuments
+        If SaveFile.ShowDialog() = DialogResult.OK Then
+            'isGewijzigd = False
+            modMain.ds.WriteXml(SaveFile.FileName)
+            MessageBox.Show($"Bestand {SaveFile.FileName} is opgeslagen.", "Vordering")
+            'filename = SaveFile.FileName
+        End If
+    End Sub
+
+    Private Sub btnOpenen_Click(sender As Object, e As EventArgs) Handles btnOpenen.Click
+        If isGewijzigd Then
+            MessageBox.Show("Er zijn nog niet opgeslagen gegevens.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Exit Sub
+        End If
+        OpenFile.InitialDirectory = My.Computer.FileSystem.SpecialDirectories.MyDocuments
+        If OpenFile.ShowDialog() = DialogResult.OK Then
+            modMain.ds.Clear()
+            modMain.ds.ReadXml(OpenFile.FileName)
+            filename = OpenFile.FileName
+            curRow = 0
+            'ID = dtNAW.Rows(dtNAW.Rows.Count - 1).Field(Of Long)("ID")
+            'ID = dtNAW.Rows(tslblCount.Text)
+            'dgData.Rows.Clear()
+            RefreshData()
+            ID = dtNAW.Rows(Val(tslblCount.Text) - 1).Item("ID")
+            ToonGegevens(0)
+            EnableNav(True)
+            dgData.Rows(0).Selected = True
+        End If
+    End Sub
+
+    Private Sub dgData_CellEnter(sender As Object, e As DataGridViewCellEventArgs) Handles dgData.CellEnter
         Dim row As Integer = e.RowIndex
 
         If Not dgData.Rows(e.RowIndex).IsNewRow Then
@@ -163,25 +209,74 @@
         End If
     End Sub
 
-    Private Sub btnOpslaan_Click(sender As Object, e As EventArgs) Handles btnOpslaan.Click
-        If SaveFile.ShowDialog() = DialogResult.OK Then
-            modMain.ds.WriteXml(SaveFile.FileName)
-            MessageBox.Show($"Bestand {SaveFile.FileName} is opgeslagen.", "Vordering")
-            filename = SaveFile.FileName
+    Private Sub tsbtnEdit_Click(sender As Object, e As EventArgs) Handles tsbtnEdit.Click
+        Dim gegevens() As String =
+            {
+                txtVoornaam.Text,
+                txtTVS.Text,
+                txtAchternaam.Text,
+                txtAdres.Text,
+                txtPostcode.Text,
+                txtWPlaats.Text,
+                txtTel.Text,
+                txtEmail.Text
+            }
+        For i = 0 To gegevens.Length - 1
+            dtNAW.Rows(curRow).Item(i + 1) = gegevens(i)
+        Next
+        RefreshData()
+        modMain.ds.WriteXml(filename)
+    End Sub
+
+    Private Sub btnVeldenLegen_Click(sender As Object, e As EventArgs) Handles btnVeldenLegen.Click
+        VeldenLegen(metID:=False)
+    End Sub
+
+    Private Sub tsbtnRemove_Click(sender As Object, e As EventArgs) Handles tsbtnRemove.Click
+        If txtID.Text.Length > 0 Then
+            dtNAW.Rows.RemoveAt(curRow)
+            If dtNAW.Rows.Count > 0 Then
+                ToonGegevens(curRow)
+                RefreshData()
+                modMain.ds.WriteXml(filename)
+            Else
+                curRow = 0
+                VeldenLegen(metID:=True)
+                tslblCount.Text = "0"
+                tstxtRow.Text = "0"
+                EnableNav(False)
+            End If
         End If
     End Sub
 
-    Private Sub btnOpenen_Click(sender As Object, e As EventArgs) Handles btnOpenen.Click
-        If OpenFile.ShowDialog() = DialogResult.OK Then
-            modMain.ds.Clear()
-            modMain.ds.ReadXml(OpenFile.FileName)
-            curRow = 0
-            'ID = dtNAW.Rows(dtNAW.Rows.Count - 1).Field(Of Long)("ID")
-            'ID = dtNAW.Rows(tslblCount.Text)
-            'dgData.Rows.Clear()
-            RefreshData()
-            ID = dtNAW.Rows(Val(tslblCount.Text) - 1).Item("ID")
-            ToonGegevens(0)
+    Private Sub tsbtnSearch_Click(sender As Object, e As EventArgs) Handles tsbtnSearch.Click
+        Dim objSearch As New dlgSearch
+        'Dim dsQuery As New DataSet
+        'dsQuery.Tables.Add("Query")
+
+        'Dim columns() As String
+
+        'dtNAW.Columns.CopyTo(columns(), 0)
+        'For Each column As DataGridViewColumn In dtNAW.Columns
+        For i As Integer = 0 To dtNAW.Columns.Count - 1
+            'dsQuery.Tables("Query").Columns.Add(dtNAW.Columns(i).ColumnName)
+            Dim column As New DataGridViewColumn
+            column.Name = dtNAW.Columns(i).ColumnName
+            objSearch.dgSearch.Columns.Add(column)
+        Next
+        'Dim myRow As DataRow
+        'myRow = dsQuery.Tables("Query").NewRow
+
+        'dsQuery.Tables("Query").Rows.Add(myRow)
+        'objSearch.dgSearch.DataSource = dsQuery
+        'For i As Integer = 0 To 
+        objSearch.dgSearch.Refresh()
+
+        If objSearch.ShowDialog(Me) = DialogResult.OK Then
+            MessageBox.Show("OK knop geklikt")
+        Else
+            MessageBox.Show("Annuleren knop geklikt")
         End If
+        'dsQuery = Nothing
     End Sub
 End Class

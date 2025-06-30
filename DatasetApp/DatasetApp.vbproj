@@ -79,6 +79,12 @@
     <Compile Include="AboutBox.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="dlgSearch.Designer.vb">
+      <DependentUpon>dlgSearch.vb</DependentUpon>
+    </Compile>
+    <Compile Include="dlgSearch.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmMain.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -113,6 +119,9 @@
   <ItemGroup>
     <EmbeddedResource Include="AboutBox.resx">
       <DependentUpon>AboutBox.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlgSearch.resx">
+      <DependentUpon>dlgSearch.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.vb</DependentUpon>
@@ -168,6 +177,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Edit.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Lilo.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\application-search-result.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
