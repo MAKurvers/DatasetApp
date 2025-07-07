@@ -46,27 +46,27 @@ Partial Class frmMain
         Me.txtVoornaam = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.tsNAW = New System.Windows.Forms.ToolStrip()
+        Me.tsbtnFirst = New System.Windows.Forms.ToolStripButton()
+        Me.tsbtnPrev = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.tstxtRow = New System.Windows.Forms.ToolStripTextBox()
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.tslblCount = New System.Windows.Forms.ToolStripLabel()
         Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
+        Me.tsbtnNext = New System.Windows.Forms.ToolStripButton()
+        Me.tsbtnLast = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator4 = New System.Windows.Forms.ToolStripSeparator()
+        Me.tsbtnAdd = New System.Windows.Forms.ToolStripButton()
+        Me.tsbtnEdit = New System.Windows.Forms.ToolStripButton()
+        Me.tsbtnRemove = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripSeparator5 = New System.Windows.Forms.ToolStripSeparator()
+        Me.tscmbColumns = New System.Windows.Forms.ToolStripComboBox()
+        Me.tstxtSearch = New System.Windows.Forms.ToolStripTextBox()
+        Me.tsbtnSearch = New System.Windows.Forms.ToolStripButton()
         Me.btnVeldenLegen = New System.Windows.Forms.Button()
         Me.btnOpenen = New System.Windows.Forms.Button()
         Me.OpenFile = New System.Windows.Forms.OpenFileDialog()
         Me.SaveFile = New System.Windows.Forms.SaveFileDialog()
-        Me.tscmbColumns = New System.Windows.Forms.ToolStripComboBox()
-        Me.tstxtSearch = New System.Windows.Forms.ToolStripTextBox()
-        Me.ToolStripSeparator5 = New System.Windows.Forms.ToolStripSeparator()
-        Me.tsbtnFirst = New System.Windows.Forms.ToolStripButton()
-        Me.tsbtnPrev = New System.Windows.Forms.ToolStripButton()
-        Me.tsbtnNext = New System.Windows.Forms.ToolStripButton()
-        Me.tsbtnLast = New System.Windows.Forms.ToolStripButton()
-        Me.tsbtnAdd = New System.Windows.Forms.ToolStripButton()
-        Me.tsbtnEdit = New System.Windows.Forms.ToolStripButton()
-        Me.tsbtnRemove = New System.Windows.Forms.ToolStripButton()
-        Me.tsbtnSearch = New System.Windows.Forms.ToolStripButton()
         CType(Me.dgData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gbData.SuspendLayout()
         Me.tsNAW.SuspendLayout()
@@ -74,6 +74,7 @@ Partial Class frmMain
         '
         'dgData
         '
+        Me.dgData.AllowUserToAddRows = False
         Me.dgData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgData.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.dgData.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter
@@ -81,6 +82,8 @@ Partial Class frmMain
         Me.dgData.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.dgData.MultiSelect = False
         Me.dgData.Name = "dgData"
+        Me.dgData.ReadOnly = True
+        Me.dgData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dgData.ShowEditingIcon = False
         Me.dgData.Size = New System.Drawing.Size(1280, 291)
         Me.dgData.TabIndex = 0
@@ -287,6 +290,24 @@ Partial Class frmMain
         Me.tsNAW.TabIndex = 4
         Me.tsNAW.Text = "ToolStrip1"
         '
+        'tsbtnFirst
+        '
+        Me.tsbtnFirst.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.tsbtnFirst.Image = CType(resources.GetObject("tsbtnFirst.Image"), System.Drawing.Image)
+        Me.tsbtnFirst.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsbtnFirst.Name = "tsbtnFirst"
+        Me.tsbtnFirst.Size = New System.Drawing.Size(23, 22)
+        Me.tsbtnFirst.ToolTipText = "Eerste rij"
+        '
+        'tsbtnPrev
+        '
+        Me.tsbtnPrev.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.tsbtnPrev.Image = Global.DatasetApp.My.Resources.Resources.resultset_previous
+        Me.tsbtnPrev.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsbtnPrev.Name = "tsbtnPrev"
+        Me.tsbtnPrev.Size = New System.Drawing.Size(23, 22)
+        Me.tsbtnPrev.ToolTipText = "Vorige rij"
+        '
         'ToolStripSeparator1
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
@@ -316,10 +337,82 @@ Partial Class frmMain
         Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
         Me.ToolStripSeparator3.Size = New System.Drawing.Size(6, 25)
         '
+        'tsbtnNext
+        '
+        Me.tsbtnNext.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.tsbtnNext.Image = Global.DatasetApp.My.Resources.Resources.resultset_next
+        Me.tsbtnNext.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsbtnNext.Name = "tsbtnNext"
+        Me.tsbtnNext.Size = New System.Drawing.Size(23, 22)
+        Me.tsbtnNext.ToolTipText = "Volgende rij"
+        '
+        'tsbtnLast
+        '
+        Me.tsbtnLast.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.tsbtnLast.Image = Global.DatasetApp.My.Resources.Resources.resultset_last
+        Me.tsbtnLast.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsbtnLast.Name = "tsbtnLast"
+        Me.tsbtnLast.Size = New System.Drawing.Size(23, 22)
+        Me.tsbtnLast.ToolTipText = "Laatste rij"
+        '
         'ToolStripSeparator4
         '
         Me.ToolStripSeparator4.Name = "ToolStripSeparator4"
         Me.ToolStripSeparator4.Size = New System.Drawing.Size(6, 25)
+        '
+        'tsbtnAdd
+        '
+        Me.tsbtnAdd.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.tsbtnAdd.Image = Global.DatasetApp.My.Resources.Resources.add
+        Me.tsbtnAdd.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsbtnAdd.Name = "tsbtnAdd"
+        Me.tsbtnAdd.Size = New System.Drawing.Size(23, 22)
+        Me.tsbtnAdd.ToolTipText = "Gegevens toevoegen"
+        '
+        'tsbtnEdit
+        '
+        Me.tsbtnEdit.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.tsbtnEdit.Image = Global.DatasetApp.My.Resources.Resources.Edit
+        Me.tsbtnEdit.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsbtnEdit.Name = "tsbtnEdit"
+        Me.tsbtnEdit.Size = New System.Drawing.Size(23, 22)
+        Me.tsbtnEdit.ToolTipText = "Gegevens wijzigen"
+        '
+        'tsbtnRemove
+        '
+        Me.tsbtnRemove.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.tsbtnRemove.Image = Global.DatasetApp.My.Resources.Resources.cross
+        Me.tsbtnRemove.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsbtnRemove.Name = "tsbtnRemove"
+        Me.tsbtnRemove.Size = New System.Drawing.Size(23, 22)
+        Me.tsbtnRemove.ToolTipText = "Gegevens verwijderen"
+        '
+        'ToolStripSeparator5
+        '
+        Me.ToolStripSeparator5.Name = "ToolStripSeparator5"
+        Me.ToolStripSeparator5.Size = New System.Drawing.Size(6, 25)
+        '
+        'tscmbColumns
+        '
+        Me.tscmbColumns.Items.AddRange(New Object() {"ID", "Achternaam", "Adres", "Postcode", "Woonplaats"})
+        Me.tscmbColumns.Name = "tscmbColumns"
+        Me.tscmbColumns.Size = New System.Drawing.Size(200, 25)
+        Me.tscmbColumns.Text = "ID"
+        '
+        'tstxtSearch
+        '
+        Me.tstxtSearch.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.tstxtSearch.Name = "tstxtSearch"
+        Me.tstxtSearch.Size = New System.Drawing.Size(300, 25)
+        '
+        'tsbtnSearch
+        '
+        Me.tsbtnSearch.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.tsbtnSearch.Image = Global.DatasetApp.My.Resources.Resources.application_search_result
+        Me.tsbtnSearch.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsbtnSearch.Name = "tsbtnSearch"
+        Me.tsbtnSearch.Size = New System.Drawing.Size(23, 22)
+        Me.tsbtnSearch.Text = "ToolStripButton1"
         '
         'btnVeldenLegen
         '
@@ -350,96 +443,6 @@ Partial Class frmMain
         '
         Me.SaveFile.Filter = "Dataset bestanden|*.xml"
         Me.SaveFile.InitialDirectory = "D:\Documenten\Projecten\Visual Basic\Dataset bestanden"
-        '
-        'tscmbColumns
-        '
-        Me.tscmbColumns.Items.AddRange(New Object() {"ID", "Achternaam", "Adres", "Postcode", "Woonplaats"})
-        Me.tscmbColumns.Name = "tscmbColumns"
-        Me.tscmbColumns.Size = New System.Drawing.Size(200, 25)
-        Me.tscmbColumns.Text = "ID"
-        '
-        'tstxtSearch
-        '
-        Me.tstxtSearch.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.tstxtSearch.Name = "tstxtSearch"
-        Me.tstxtSearch.Size = New System.Drawing.Size(300, 25)
-        '
-        'ToolStripSeparator5
-        '
-        Me.ToolStripSeparator5.Name = "ToolStripSeparator5"
-        Me.ToolStripSeparator5.Size = New System.Drawing.Size(6, 25)
-        '
-        'tsbtnFirst
-        '
-        Me.tsbtnFirst.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.tsbtnFirst.Image = CType(resources.GetObject("tsbtnFirst.Image"), System.Drawing.Image)
-        Me.tsbtnFirst.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsbtnFirst.Name = "tsbtnFirst"
-        Me.tsbtnFirst.Size = New System.Drawing.Size(23, 22)
-        Me.tsbtnFirst.ToolTipText = "Eerste rij"
-        '
-        'tsbtnPrev
-        '
-        Me.tsbtnPrev.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.tsbtnPrev.Image = Global.DatasetApp.My.Resources.Resources.resultset_previous
-        Me.tsbtnPrev.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsbtnPrev.Name = "tsbtnPrev"
-        Me.tsbtnPrev.Size = New System.Drawing.Size(23, 22)
-        Me.tsbtnPrev.ToolTipText = "Vorige rij"
-        '
-        'tsbtnNext
-        '
-        Me.tsbtnNext.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.tsbtnNext.Image = Global.DatasetApp.My.Resources.Resources.resultset_next
-        Me.tsbtnNext.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsbtnNext.Name = "tsbtnNext"
-        Me.tsbtnNext.Size = New System.Drawing.Size(23, 22)
-        Me.tsbtnNext.ToolTipText = "Volgende rij"
-        '
-        'tsbtnLast
-        '
-        Me.tsbtnLast.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.tsbtnLast.Image = Global.DatasetApp.My.Resources.Resources.resultset_last
-        Me.tsbtnLast.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsbtnLast.Name = "tsbtnLast"
-        Me.tsbtnLast.Size = New System.Drawing.Size(23, 22)
-        Me.tsbtnLast.ToolTipText = "Laatste rij"
-        '
-        'tsbtnAdd
-        '
-        Me.tsbtnAdd.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.tsbtnAdd.Image = Global.DatasetApp.My.Resources.Resources.add
-        Me.tsbtnAdd.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsbtnAdd.Name = "tsbtnAdd"
-        Me.tsbtnAdd.Size = New System.Drawing.Size(23, 22)
-        Me.tsbtnAdd.ToolTipText = "Gegevens toevoegen"
-        '
-        'tsbtnEdit
-        '
-        Me.tsbtnEdit.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.tsbtnEdit.Image = Global.DatasetApp.My.Resources.Resources.Edit
-        Me.tsbtnEdit.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsbtnEdit.Name = "tsbtnEdit"
-        Me.tsbtnEdit.Size = New System.Drawing.Size(23, 22)
-        Me.tsbtnEdit.ToolTipText = "Gegevens wijzigen"
-        '
-        'tsbtnRemove
-        '
-        Me.tsbtnRemove.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.tsbtnRemove.Image = Global.DatasetApp.My.Resources.Resources.cross
-        Me.tsbtnRemove.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsbtnRemove.Name = "tsbtnRemove"
-        Me.tsbtnRemove.Size = New System.Drawing.Size(23, 22)
-        Me.tsbtnRemove.ToolTipText = "Gegevens verwijderen"
-        '
-        'tsbtnSearch
-        '
-        Me.tsbtnSearch.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.tsbtnSearch.Image = Global.DatasetApp.My.Resources.Resources.application_search_result
-        Me.tsbtnSearch.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsbtnSearch.Name = "tsbtnSearch"
-        Me.tsbtnSearch.Size = New System.Drawing.Size(23, 22)
-        Me.tsbtnSearch.Text = "ToolStripButton1"
         '
         'frmMain
         '

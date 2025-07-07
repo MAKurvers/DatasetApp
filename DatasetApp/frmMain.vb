@@ -251,31 +251,53 @@
 
     Private Sub tsbtnSearch_Click(sender As Object, e As EventArgs) Handles tsbtnSearch.Click
         Dim objSearch As New dlgSearch
-        'Dim dsQuery As New DataSet
-        'dsQuery.Tables.Add("Query")
+        Dim columnName As String
+        Dim value As String
 
-        'Dim columns() As String
+        columnName = tscmbColumns.Text
+        value = tstxtSearch.Text
+        'For i As Integer = 0 To dtNAW.Columns.Count - 1
+        '    'dsQuery.Tables("Query").Columns.Add(dtNAW.Columns(i).ColumnName)
+        '    Dim column As New DataGridViewColumn
+        '    column.Name = dtNAW.Columns(i).ColumnName
+        '    column.HeaderText = dtNAW.Columns(i).Caption
+        '    objSearch.dgSearch.Columns.Add(column)
+        'Next
+        'dtNAW.
+        Dim filteredRows = From row In dtNAW.AsEnumerable()
+                           Where row.Field(Of String)(columnName) = value
+                           Select row
 
-        'dtNAW.Columns.CopyTo(columns(), 0)
-        'For Each column As DataGridViewColumn In dtNAW.Columns
-        For i As Integer = 0 To dtNAW.Columns.Count - 1
-            'dsQuery.Tables("Query").Columns.Add(dtNAW.Columns(i).ColumnName)
-            Dim column As New DataGridViewColumn
-            column.Name = dtNAW.Columns(i).ColumnName
-            objSearch.dgSearch.Columns.Add(column)
-        Next
-        'Dim myRow As DataRow
-        'myRow = dsQuery.Tables("Query").NewRow
+        If filteredRows.Count > 0 Then
+            ' Convert filtered rows back to a DataTable
+            Dim filteredTable As DataTable = filteredRows.CopyToDataTable()
 
-        'dsQuery.Tables("Query").Rows.Add(myRow)
-        'objSearch.dgSearch.DataSource = dsQuery
-        'For i As Integer = 0 To 
-        objSearch.dgSearch.Refresh()
-
-        If objSearch.ShowDialog(Me) = DialogResult.OK Then
-            MessageBox.Show("OK knop geklikt")
+            ' Bind filtered data to a control
+            objSearch.dgSearch.DataSource = filteredTable
+            objSearch.dgSearch.Refresh()
+        End If
+        Dim foundRows As Integer = objSearch.dgSearch.Rows.Count
+        If foundRows > 0 Then
+            objSearch.LabelStatus.Text = $"Aantal rijen gevonden: {foundRows}"
         Else
-            MessageBox.Show("Annuleren knop geklikt")
+            objSearch.LabelStatus.Text = "Geen rijen gevonden!"
+        End If
+        If objSearch.ShowDialog(Me) = DialogResult.OK Then
+            If foundRows > 0 AndAlso objSearch.dgSearch.SelectedRows(0).Selected Then
+                For Each row As DataGridViewRow In dgData.Rows()
+                    If row.Cells(0).Value.Equals(objSearch.dgSearch.SelectedRows(0).Cells(0).Value) Then
+                        dgData.Rows(row.Index).Selected = True
+                        Exit For
+                    End If
+                Next
+                'MessageBox.Show($"Rij met ID nummer {objSearch.dgSearch.SelectedRows(0).Cells(0).Value} geselecteerd",
+                '                "Info")
+                'Dim index = dgData.Rows().IndexOf(objSearch.dgSearch.SelectedRows(0))
+                'Dim index As Integer = objSearch.dgSearch.SelectedRows(0).Index
+                'dgData.SelectedRows.Item(index).Selected = True
+                'dgData.Rows(index).Selected = True
+                'gegevens ophalen
+            End If
         End If
         'dsQuery = Nothing
     End Sub
